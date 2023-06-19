@@ -1,9 +1,4 @@
-from car_factory import (
-    EngineCylinders,
-    Wheels,
-    Doors,
-    validate_configuration,
-)
+from car_factory import validate_configuration
 from pytest import raises
 from typing import List, Union
 

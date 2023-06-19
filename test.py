@@ -21,6 +21,11 @@ def test_invalid_truck_1_configuration():
     assert validate_configuration(configuration) is False
 
 
+def test_invalid_truck_2_configuration():
+    configuration = ["Truck", EngineCylinders(6), Wheels.FOUR, Doors.TWO]
+    assert validate_configuration(configuration) is False
+
+
 def test_valid_car_configuration():
     configuration = ["Car", EngineCylinders(4), Wheels.FOUR, Doors.TWO]
     assert validate_configuration(configuration) is True
@@ -28,6 +33,16 @@ def test_valid_car_configuration():
 
 def test_invalid_car_configuration():
     configuration = ["Car", EngineCylinders(8), Wheels.FOUR, Doors.ZERO]
+    assert validate_configuration(configuration) is False
+
+
+def test_invalid_car_1_configuration():
+    configuration = ["Car", EngineCylinders(4), Wheels.TWO, Doors.TWO]
+    assert validate_configuration(configuration) is False
+
+
+def test_invalid_car_2_configuration():
+    configuration = ["Car", EngineCylinders(4), Wheels.FOUR, Doors.ZERO]
     assert validate_configuration(configuration) is False
 
 

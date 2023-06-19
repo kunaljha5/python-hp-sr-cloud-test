@@ -16,6 +16,11 @@ def test_invalid_truck_configuration():
     assert validate_configuration(configuration) is False
 
 
+def test_invalid_truck_1_configuration():
+    configuration = ["Truck", EngineCylinders(1), Wheels.TWO, Doors.FOUR]
+    assert validate_configuration(configuration) is False
+
+
 def test_valid_car_configuration():
     configuration = ["Car", EngineCylinders(4), Wheels.FOUR, Doors.TWO]
     assert validate_configuration(configuration) is True

@@ -46,5 +46,3 @@ jobs:
       with:
         name: coverage-report
         path: coverage.xml
-    - name: Upload Coverage to Codecov
-      uses: codecov/codecov-action@v2

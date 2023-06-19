@@ -11,6 +11,7 @@ class EngineCylinders:
 class Wheels(Enum):
     FOUR = 4
     TWO = 2
+    ONE = 1
 
 
 @dataclass
@@ -30,6 +31,8 @@ def validate_configuration(configuration):
         return validate_car_configuration(params)
     elif vehicle_type == "Scooter":
         return validate_scooter_configuration(params)
+    elif vehicle_type == "Motorcycle":
+        return validate_motorcycle_configuration(params)
     else:
         raise ValueError("Invalid vehicle type")
 
@@ -86,4 +89,22 @@ def validate_scooter_configuration(params):
     if doors is not Doors.ZERO:
         return False
 
+    return True
+
+
+def validate_motorcycle_configuration(params):
+    """
+    :param params:
+    :return: boolean
+    """
+    engine_cylinders, wheels, doors = params
+
+    if not isinstance(
+        engine_cylinders, EngineCylinders
+    ) or engine_cylinders.value not in [2,4]:
+        return False
+    if wheels is not Wheels.ONE:
+        return False
+    if doors is not Doors.ZERO:
+        return False
     return True

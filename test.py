@@ -35,3 +35,12 @@ def test_invalid_scooter_configuration():
     configuration = ["Scooter", EngineCylinders(3), Wheels.TWO, Doors.FOUR]
     assert validate_configuration(configuration) is False
 
+
+def test_valid_motorcycle_configuration():
+    configuration = ["Motorcycle", EngineCylinders(4), Wheels.ONE, Doors.ZERO]
+    assert validate_configuration(configuration) is True
+
+
+def test_invalid_motorcycle_configuration():
+    configuration = ["Motorcycle", EngineCylinders(6), Wheels.ONE, Doors.TWO]
+    assert validate_configuration(configuration) is False

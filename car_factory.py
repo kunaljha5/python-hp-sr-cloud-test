@@ -4,6 +4,7 @@ from typing import List, Union
 
 ConfigurationSchema = List[Union[str, int, int, int]]
 
+
 @dataclass
 class EngineCylinders:
     value: int

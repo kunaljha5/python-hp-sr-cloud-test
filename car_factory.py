@@ -65,7 +65,7 @@ def validate_car_configuration(params):
     if wheels is not Wheels.FOUR:
         return False
 
-    if doors not in [Doors.TWO, Doors.FOUR]:
+    if doors is Doors.ZERO:
         return False
 
     return True
@@ -101,7 +101,7 @@ def validate_motorcycle_configuration(params):
 
     if not isinstance(
         engine_cylinders, EngineCylinders
-    ) or engine_cylinders.value not in [2,4]:
+    ) or engine_cylinders.value not in [2, 4]:
         return False
     if wheels is not Wheels.ONE:
         return False

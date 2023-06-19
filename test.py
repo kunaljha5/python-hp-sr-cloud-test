@@ -4,6 +4,7 @@ from car_factory import (
     Doors,
     validate_configuration,
 )
+import pytest
 
 
 def test_valid_truck_configuration():
@@ -56,6 +57,16 @@ def test_invalid_scooter_configuration():
     assert validate_configuration(configuration) is False
 
 
+def test_invalid_scooter_1_configuration():
+    configuration = ["Scooter", EngineCylinders(6), Wheels.TWO, Doors.FOUR]
+    assert validate_configuration(configuration) is False
+
+
+def test_invalid_scooter_2_configuration():
+    configuration = ["Scooter", EngineCylinders(3), Wheels.FOUR, Doors.FOUR]
+    assert validate_configuration(configuration) is False
+
+
 def test_valid_motorcycle_configuration():
     configuration = ["Motorcycle", EngineCylinders(4), Wheels.ONE, Doors.ZERO]
     assert validate_configuration(configuration) is True
@@ -64,3 +75,20 @@ def test_valid_motorcycle_configuration():
 def test_invalid_motorcycle_configuration():
     configuration = ["Motorcycle", EngineCylinders(6), Wheels.ONE, Doors.TWO]
     assert validate_configuration(configuration) is False
+
+
+def test_invalid_motorcycle_1_configuration():
+    configuration = ["Motorcycle", EngineCylinders(2), Wheels.TWO, Doors.TWO]
+    assert validate_configuration(configuration) is False
+
+
+def test_invalid_motorcycle_2_configuration():
+    configuration = ["Motorcycle", EngineCylinders(2), Wheels.ONE, Doors.FOUR]
+    assert validate_configuration(configuration) is False
+
+
+def test_invalid_vehicle_configuration():
+    configuration = ["F1", EngineCylinders(6), Wheels.ONE, Doors.TWO]
+    with pytest.raises(ValueError) as error:
+        validate_configuration(configuration)
+    assert str(error.value) == "Invalid vehicle type"

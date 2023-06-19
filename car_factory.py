@@ -1,6 +1,8 @@
 from dataclasses import dataclass
 from enum import Enum
+from typing import List, Union
 
+ConfigurationSchema = List[Union[str, int, int, int]]
 
 @dataclass
 class EngineCylinders:
@@ -21,7 +23,7 @@ class Doors(Enum):
     ZERO = 0
 
 
-def validate_configuration(configuration):
+def validate_configuration(configuration: ConfigurationSchema) -> bool:
     vehicle_type = configuration[0]
     params = configuration[1:]
 
@@ -37,74 +39,66 @@ def validate_configuration(configuration):
         raise ValueError("Invalid vehicle type")
 
 
-def validate_truck_configuration(params):
+def validate_truck_configuration(params: List[Union[str, int]]) -> bool:
     engine_cylinders, wheels, doors = params
 
-    if not isinstance(
-        engine_cylinders, EngineCylinders
-    ) or engine_cylinders.value not in [4, 6, 8]:
+    if engine_cylinders not in [4, 6, 8]:
         return False
 
-    if wheels is not Wheels.FOUR:
+    if wheels != Wheels.FOUR.value:
         return False
 
-    if doors is not Doors.FOUR:
+    if doors != Doors.FOUR.value:
         return False
 
     return True
 
 
-def validate_car_configuration(params):
+def validate_car_configuration(params: List[Union[str, int]]) -> bool:
     engine_cylinders, wheels, doors = params
 
-    if not isinstance(
-        engine_cylinders, EngineCylinders
-    ) or engine_cylinders.value not in [4, 6]:
+    if engine_cylinders not in [4, 6]:
         return False
 
-    if wheels is not Wheels.FOUR:
+    if wheels != Wheels.FOUR.value:
         return False
 
-    if doors is Doors.ZERO:
+    if doors == Doors.ZERO.value:
         return False
 
     return True
 
 
-def validate_scooter_configuration(params):
+def validate_scooter_configuration(params: List[Union[str, int]]) -> bool:
     """
     :param params:
     :return: boolean
     """
     engine_cylinders, wheels, doors = params
 
-    if not isinstance(
-        engine_cylinders, EngineCylinders
-    ) or engine_cylinders.value not in [1, 2, 3]:
+    if engine_cylinders not in [1, 2, 3]:
         return False
 
-    if wheels is not Wheels.TWO:
+    if wheels != Wheels.TWO.value:
         return False
 
-    if doors is not Doors.ZERO:
+    if doors != Doors.ZERO.value:
         return False
 
     return True
 
 
-def validate_motorcycle_configuration(params):
+def validate_motorcycle_configuration(params: List[Union[str, int]]) -> bool:
     """
     :param params:
     :return: boolean
     """
     engine_cylinders, wheels, doors = params
 
-    if not isinstance(
-        engine_cylinders, EngineCylinders
-    ) or engine_cylinders.value not in [2, 4]:
+    if engine_cylinders not in [2, 4]:
         return False
-    if wheels is not Wheels.ONE:
+    if wheels != Wheels.ONE.value:
         return False
-    if doors is not Doors.ZERO:
+    if doors != Doors.ZERO.value:
         return False
     return True

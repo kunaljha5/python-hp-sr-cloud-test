@@ -61,7 +61,12 @@ def test_invalid_scooter_configuration() -> None:
 
 
 def test_invalid_scooter_1_configuration() -> None:
-    configuration: ConfigurationSchema = ["Scooter", str(EngineCylinders(6)), str(Wheels.TWO.value), str(Doors.FOUR.value)]
+    configuration: ConfigurationSchema = [
+        "Scooter",
+        str(EngineCylinders(6)),
+        str(Wheels.TWO.value),
+        str(Doors.FOUR.value),
+    ]
     assert validate_configuration(configuration) is False
 
 
